@@ -11,11 +11,11 @@ spark = SparkSession.builder.appName("MySQL to Dataframe using a JDBC Connection
     .master("local[*]").getOrCreate()
 
 user = "root"
-password = "Spark<3Java"
+password = "password"
 use_ssl="false"
-mysql_url = "jdbc:mysql://localhost:3306/sakila?serverTimezone=EST"
-dbtable = "actor"
-database="sakila"
+mysql_url = "jdbc:mysql://localhost:3306/testschema"
+dbtable = "acct"
+database="testschema"
 
 df = spark.read.format("jdbc") \
         .options(url=mysql_url,
@@ -25,7 +25,7 @@ df = spark.read.format("jdbc") \
                  password=password) \
         .load()
 
-df = df.orderBy(df.col("last_name"))
+#df = df.orderBy(df.col("last_name"))
 
 # Displays the dataframe and some of its metadata
 df.show(5)

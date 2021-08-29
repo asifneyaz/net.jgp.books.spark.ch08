@@ -7,14 +7,14 @@ import logging
 from pyspark.sql import SparkSession
 
 # Creates a session on a local master
-spark = SparkSession.builder.appName("MySQL to Dataframe using JDBC without partioning") \
+spark = SparkSession.builder.appName("MySQL to Dataframe using JDBC without partitioning") \
     .master("local[*]").getOrCreate()
 
 user = "root"
-password = "Spark<3Java"
+password = "password"
 use_ssl="false"
-mysql_url = "jdbc:mysql://localhost:3306/sakila?serverTimezone=EST"
-dbtable = "actor"
+mysql_url = "jdbc:mysql://localhost:3306/testschema"
+dbtable = "acct"
 
 df = spark.read.format("jdbc") \
     .option("url", mysql_url) \
@@ -23,7 +23,7 @@ df = spark.read.format("jdbc") \
     .option("password", password) \
     .load()
 
-df = df.table("film")
+
 
 # Displays the dataframe and some of its metadata
 df.show(5)
