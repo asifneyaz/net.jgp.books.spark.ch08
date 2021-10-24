@@ -1,8 +1,3 @@
-"""
- MySQL injection to Spark, using the Sakila sample database.
-
- @author rambabu.posa
-"""
 import logging
 from pyspark.sql import SparkSession
 
@@ -12,10 +7,10 @@ spark = SparkSession.builder.appName("MySQL to Dataframe using a JDBC Connection
 
 user = "root"
 password = "password"
-use_ssl="false"
+use_ssl = "false"
 mysql_url = "jdbc:mysql://localhost:3306/testschema"
 dbtable = "acct"
-database="testschema"
+database = "testschema"
 
 df = spark.read.format("jdbc") \
         .options(url=mysql_url,
